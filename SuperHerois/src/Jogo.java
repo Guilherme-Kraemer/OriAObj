@@ -60,7 +60,7 @@ public class Jogo {
             
             ResultadoConfronto resultado = confronto.executar(heroi, vilao);
             
-            System.out.println("Confronto " + (i + 1) + ": " + heroi.getNome() + 
+            System.out.println("\nConfronto " + (i + 1) + ": " + heroi.getNome() + 
                              " (Poder: " + heroi.getPoderTotal() + ") vs " + 
                              vilao.getNome() + " (Poder: " + vilao.getPoderTotal() + ")");
             
@@ -77,58 +77,61 @@ public class Jogo {
                     System.out.println("Resultado: Empate");
                     break;
             }
-            System.out.println();
         }
         
         // Mostrar resultado final
-        System.out.println("=== RESULTADO FINAL ===");
+        System.out.println("\n=== RESULTADO FINAL ===");
         System.out.println("Liga - Vitórias: " + liga.getVitorias());
         System.out.println("Horda - Vitórias: " + horda.getVitorias());
         
         if (liga.getVitorias() > horda.getVitorias()) {
-            System.out.println("GRUPO VENCEDOR: LIGA");
+            System.out.println("\nGRUPO VENCEDOR: LIGA");
             liga.mostrarIntegrantes();
             
             // Horda derrotada - vilões para a cadeia
             Cadeia cadeia = Cadeia.getInstancia();
             cadeia.setCapacidade(10);
+            System.out.println("\nTransferindo vilões para a cadeia...");
             for (int i = 0; i < 4; i++) {
                 Vilao vilao = (Vilao) horda.getIntegrante(i);
                 if (vilao != null) {
                     cadeia.adicionarPrisioneiro(vilao);
                 }
             }
-            System.out.println("\nVilões transferidos para a cadeia:");
             cadeia.mostrarPrisioneiros();
             
         } else if (horda.getVitorias() > liga.getVitorias()) {
-            System.out.println("GRUPO VENCEDOR: HORDA");
+            System.out.println("\nGRUPO VENCEDOR: HORDA");
             horda.mostrarIntegrantes();
             
             // Horda venceu - vilões para esconderijo
             Esconderijo esconderijoViloes = new Esconderijo(10);
+            System.out.println("\nMovendo vilões para esconderijo...");
             for (int i = 0; i < 4; i++) {
                 Vilao vilao = (Vilao) horda.getIntegrante(i);
                 if (vilao != null) {
                     esconderijoViloes.adicionarPersonagem(vilao);
                 }
             }
-            System.out.println("\nVilões movidos para esconderijo:");
             esconderijoViloes.mostrarPersonagens();
             
         } else {
-            System.out.println("RESULTADO: EMPATE");
+            System.out.println("\nRESULTADO: EMPATE");
+            System.out.println("Liga:");
+            liga.mostrarIntegrantes();
+            System.out.println("\nHorda:");
+            horda.mostrarIntegrantes();
         }
         
         // Liga sempre vai para esconderijo
         Esconderijo esconderijoLiga = new Esconderijo(10);
+        System.out.println("\nMovendo Liga para esconderijo...");
         for (int i = 0; i < 4; i++) {
             SuperHeroi heroi = (SuperHeroi) liga.getIntegrante(i);
             if (heroi != null) {
                 esconderijoLiga.adicionarPersonagem(heroi);
             }
         }
-        System.out.println("\nLiga movida para esconderijo:");
         esconderijoLiga.mostrarPersonagens();
     }
 }

@@ -33,4 +33,13 @@ public abstract class Personagem {
     public Superpoder getSuperpoder(int indice) {
         return this.superpoderes[indice];
     }
+
+    public boolean adicionarSuperpoder(Superpoder superpoder) {
+        if (contadorSuperpoderes < superpoderes.length) {
+            superpoderes[contadorSuperpoderes] = superpoder;
+            contadorSuperpoderes++;
+            return true;
+        }
+        return false;
+    }
 }
