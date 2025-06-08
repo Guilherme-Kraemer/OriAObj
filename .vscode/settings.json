@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": [
+        "Trabalho_SuperHerois",
+        "SuperHerois/src"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
+}
